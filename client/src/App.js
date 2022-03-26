@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import NavRoutes from "./NavRoutes";
+import { useQuery } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
+import Header from "./components/Header/Header";
+import {ME_QUERY} from "./components/queries/meQuery";
+import {UserContextProvider} from "./providers/User/UserProvider";
 
-function App() {
+const App = () => {
+  const navigate = useNavigate();
+  const { loading, error, data } = useQuery(ME_QUERY, {
+    fetchPolicy: 'network-only'
+  });
+  if (error) console.log("failed to fetch me data");
+
+  const [user, setUser] = useState(null);
+  const updateUser = (userData) => setUser(userData);
+
+  useEffect(() => {
+    if (!loading && !error) {
+      if (data.me.code !== 200) {
+        navigate("/");
+      }
+      setUser(data.me.meData);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContextProvider value={{
+      user,
+      updateUser
+    }}>
+      <div className="App">
+        {/* {
+          user && location.pathname.includes("/dashboard") ?
+            <DashHeader /> :
+            <Header navbarRefs={navbarRefs} />
+        } */}
+        <Header />
+        <NavRoutes />
+      </div>
+    </UserContextProvider>
   );
 }
 

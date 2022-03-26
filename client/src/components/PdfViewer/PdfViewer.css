@@ -1,0 +1,24 @@
+/* Important: Prevent pdf printing */
+@media print {
+    .pdf-container {
+      display: none;
+    }
+}
+
+.pdf-viewer-container {
+  width: 100%;
+  margin: 120px 0;
+}
+
+.pdf-controls-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.pdf-viewer-controls {
+  padding: 5px;
+  background-color: lightgrey;
+  margin: 0 10px;
+}

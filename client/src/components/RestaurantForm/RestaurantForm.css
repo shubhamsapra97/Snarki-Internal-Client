@@ -1,0 +1,124 @@
+.container {
+    width: 100vw;
+    max-width:100%;
+    margin-top: 100px;
+}
+
+.restaurant-form-container {
+    display: flex;
+    width: 90vw;
+    height: auto;
+    justify-content: space-around;
+}
+
+.restaurant-form-image {
+    width: 60%;
+    height: 400px;
+}
+
+.restaurant-form-title {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.restaurant-form-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: #b3b3b3;
+    font-weight: lighter;
+    padding: 10px 0 20px;
+    max-width: 100%;
+}
+
+.restaurant-form-input {
+    width: 500px;
+}
+
+.restaurant-form-options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.restaurant-form-options > div {
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+.restaurant-form-options input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #6c63ff;
+}
+
+.restaurant-form-options span {
+    text-decoration: underline;
+}
+
+.restaurant-form-submit {
+    width: 100%;
+    margin-top: 60px;
+    padding: 20px 10px;
+    background-color: #6c63ff;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+}
+
+.restaurant-form-submit:hover {
+    background-color: #483dff;
+    cursor: pointer;
+}
+
+.login-message {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.login-message span {
+    color: blue;
+}
+
+.error-message {
+    font-size: 16px;
+    font-weight: 400;
+    color: red;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .restaurant-form-container {
+        display: block;
+        width: 70vw;
+        margin: 0 auto 30px;
+    }
+
+    .restaurant-form-image {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .restaurant-form-input {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+    .restaurantForm {
+        margin-top: 30px;
+    }
+
+    .restaurant-form-container {
+        width: 90vw;
+        margin-bottom: 50px;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+
+}
