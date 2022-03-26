@@ -9,14 +9,14 @@ import "./ClaimRequests.css";
 const ClaimRequests = () => {
     const navigate = useNavigate();
     const { loading, error, data: requests } = useQuery(GET_CLAIM_REQUESTS, {
-        nextFetchPolicy: 'cache-and-network'
+        fetchPolicy: 'network-only'
     });
     if (error) console.log("failed to fetch me data");
 
     return (
         <div className="claim-requests-container">
             <div className="claim-table-container">
-                <div className="claim-title">Claim Requests</div>
+                <div className="claim-title">Active Claim Requests</div>
                 {   
                     loading ? <div className="claim-request-loading">
                         {"Fetching Claim Requests ..."}

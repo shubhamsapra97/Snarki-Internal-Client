@@ -78,6 +78,53 @@
     background-color: darkslategray;
 }
 
+.claim-form-options {
+    width: 100%;
+    margin: 80px auto;
+}
+
+.claim-form-options label,
+.claim-form-options input {
+    display: block;
+}
+
+.claim-form-options div {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.claim-form-options input {
+    width: 100%;
+    line-height: 30px;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.claim-asterisk {
+    color: red;
+}
+
+.claim-restaurant-error {
+    color: red;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.claim-form-options label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.claim-restaurant-error-message {
+    color: red;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
 @media screen and (max-width: 1200px) {
     .view-claim-request-data-container {
         width: 95vw;

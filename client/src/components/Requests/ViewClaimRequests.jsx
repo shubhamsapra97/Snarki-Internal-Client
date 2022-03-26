@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useFormik } from 'formik';
 import { useNavigate, useParams } from "react-router-dom";
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { GET_CLAIM_REQUEST } from "./queries/getRequests";
@@ -6,17 +7,37 @@ import { GET_DOCUMENTS } from "./queries/getDocuments";
 import { CLAIM_RESTAURANT_STATUS_UPDATE } from "./queries/claimRestaurant";
 import { TailSpin } from "react-loader-spinner";
 import PdfViewer from "../PdfViewer/PdfViewer";
+import { cleanData } from "../../utils/DOMPurify";
 import "./ViewClaimRequests.css";
 
 const ViewClaimRequest = () => {
     const params = useParams();
     const navigate = useNavigate();
+    const [error, setErrorMessage] = useState("");
     const [requestData, setRequestData] = useState({});
     const [documents, setDocuments] = useState([]);
     const [fetchRequestData] = useLazyQuery(GET_CLAIM_REQUEST);
     const [fetchDocuments] = useLazyQuery(GET_DOCUMENTS);
     const [updateClaimStatus] = useMutation(CLAIM_RESTAURANT_STATUS_UPDATE);
     const requestId = params.requestId;
+
+    const validate = values => {
+        const errors = {};
+      
+        if (!values.reason) {
+          errors.reason = 'is required';
+        }
+      
+        return errors;
+    };
+
+    const formik = useFormik({
+        initialValues: {
+            reason: ''
+        },
+        validate,
+        onSubmit: () => {},
+    });
 
     const fetchRequestDataFn = async () => {
         const {data} = await fetchRequestData({
@@ -56,13 +77,23 @@ const ViewClaimRequest = () => {
     }
 
     const updateStatusClick = async (status) => {
+        setErrorMessage("");
 
-        const {data} = await updateClaimStatus({
-            variables: {
-                status,
-                _id: requestId
+        if (formik.values.reason) {
+            const {data} = await updateClaimStatus({
+                variables: {
+                    status,
+                    _id: requestId,
+                    reason: formik.values.reason
+                }
+            });
+
+            if (data.claimRequestUpdate.code !== 200) {
+                setErrorMessage(data.claimRequestUpdate.message);
+            } else {
+                navigate("/");
             }
-        });
+        }
 
     }
 
@@ -159,20 +190,50 @@ const ViewClaimRequest = () => {
                                     </div> : null
                             }
 
-                            <div className="claim-controls-container">
-                                <button
-                                    className="claim-controls"
-                                    onClick={() => updateStatusClick("rejected")}
-                                >
-                                    Reject
-                                </button>
-                                <button
-                                    className="claim-controls"
-                                    onClick={() => updateStatusClick("approved")}
-                                >
-                                    Approve
-                                </button>
-                            </div>
+                            <form onSubmit={formik.handleSubmit}>
+                                <div className="claim-form-options">
+                                    <div>
+                                        <label htmlFor="reason">
+                                            Approve/Reject Reason<span className="claim-asterisk">*</span>
+                                            {
+                                                formik.touched['reason'] && formik.errors.reason ?
+                                                    <span className="claim-restaurant-error">{formik.errors.reason}</span>
+                                                    : null
+                                            }
+                                        </label>
+                                        <input
+                                            id="reason"
+                                            name="reason"
+                                            checked={formik.values.reason}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="claim-controls-container">
+                                    <button
+                                        type="button"
+                                        className="claim-controls"
+                                        onClick={() => updateStatusClick("rejected")}
+                                    >
+                                        Reject
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="claim-controls"
+                                        onClick={() => updateStatusClick("approved")}
+                                    >
+                                        Approve
+                                    </button>
+                                </div>
+                            </form>
+
+                            {
+                                error ?
+                                    <div className="claim-restaurant-error-message">{error}</div>
+                                    : null
+                            }
+
                         </div>
                     ) : <div className="request-not-found">"Request Not Found!"</div>
             }
