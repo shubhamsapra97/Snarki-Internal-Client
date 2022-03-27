@@ -5,6 +5,10 @@
     }
 }
 
+.pdf-container {
+  overflow-x: auto;
+}
+
 .pdf-viewer-container {
   width: 100%;
   margin: 120px 0;

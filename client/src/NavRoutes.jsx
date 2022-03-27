@@ -5,6 +5,8 @@ import { UserContext } from './providers/User/UserProvider';
 import ProtectedRoute from './components/ProtectedRoutes/ProtectedRoutes';
 import ClaimRequests from './components/Requests/ClaimRequests';
 import ViewClaimRequest from './components/Requests/ViewClaimRequests';
+import AddRequests from './components/Requests/AddRequests/AddRequests';
+import ViewAddRequest from './components/Requests/AddRequests/ViewAddRequests';
 
 const NavRoutes = () => {
     const {user} = useContext(UserContext);
@@ -19,6 +21,8 @@ const NavRoutes = () => {
                 <Route exact path='/dashboard' element={<Navigate to="/dashboard/requests/claim" />} />
                 <Route exact path='/dashboard/requests/claim' element={<ClaimRequests />} />
                 <Route exact path='/dashboard/requests/claim/:requestId' element={<ViewClaimRequest />} />
+                <Route exact path='/dashboard/requests/add' element={<AddRequests />} />
+                <Route exact path='/dashboard/requests/add/:requestId' element={<ViewAddRequest />} />
             </Route>
         </Routes>
     );

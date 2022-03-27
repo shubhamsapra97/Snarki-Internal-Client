@@ -1,9 +1,9 @@
-.view-claim-requests {
+.view-add-requests {
     width: 100vw;
     max-width: 100%;
 }
 
-.view-claim-request-loading {
+.view-add-request-loading {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,23 +11,23 @@
     font-size: 25px;
 }
 
-.view-claim-request-data-container {
+.view-add-request-data-container {
     width: 60vw;
     margin: 30px auto;
 }
 
-.view-claim-table-container {
+.view-add-table-container {
     overflow-x: auto;
 }
 
-.view-claim-request-title {
+.view-add-request-title {
     font-size: 30px;
     font-weight: lighter;
     text-decoration: underline;
     margin: 15px 0;
 }
 
-.view-claim-requests-table {
+.view-add-requests-table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -35,25 +35,21 @@
     margin: 30px 0;
 }
   
-.view-claim-requests-table td, .view-claim-requests-table th {
+.view-add-requests-table td, .view-add-requests-table th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-.view-claim-requests-table tr:nth-child(even){background-color: #f2f2f2;}
+.view-add-requests-table tr:nth-child(even){background-color: #f2f2f2;}
 
-.view-claim-requests-table tr:hover {background-color: #ddd;}
+.view-add-requests-table tr:hover {background-color: #ddd;}
 
-.view-claim-requests-table th {
+.view-add-requests-table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: grey;
     color: white;
-}
-
-.pdf-container {
-    overflow-x: scroll;
 }
 
 .request-not-found {
@@ -64,14 +60,14 @@
     font-size: 25px;
 }
 
-.claim-controls-container {
+.add-controls-container {
     width: 100%;
     display: flex;
     justify-content: space-around;
     margin: 30px 0 80px 0;
 }
 
-.claim-controls {
+.add-controls {
     width: 180px;
     height: 60px;
     border: 0;
@@ -82,26 +78,26 @@
     background-color: lightslategray;
 }
 
-.claim-controls:hover {
+.add-controls:hover {
     background-color: darkslategray;
 }
 
-.claim-form-options {
+.add-form-options {
     width: 100%;
     margin: 80px auto;
 }
 
-.claim-form-options label,
-.claim-form-options input {
+.add-form-options label,
+.add-form-options input {
     display: block;
 }
 
-.claim-form-options div {
+.add-form-options div {
     width: 60%;
     margin: 0 auto;
 }
 
-.claim-form-options input {
+.add-form-options input {
     width: 100%;
     line-height: 30px;
     font-size: 15px;
@@ -109,23 +105,23 @@
     padding: 0 10px;
 }
 
-.claim-asterisk {
+.add-asterisk {
     color: red;
 }
 
-.claim-restaurant-error {
+.add-restaurant-error {
     color: red;
     font-size: 16px;
     font-weight: 500;
     margin-left: 5px;
 }
 
-.claim-form-options label {
+.add-form-options label {
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-.claim-restaurant-error-message {
+.add-restaurant-error-message {
     color: red;
     font-size: 30px;
     font-weight: 600;
@@ -133,13 +129,34 @@
     margin-bottom: 100px;
 }
 
+.register-restaurant-image {
+    pointer-events: none;
+}
+
 @media screen and (max-width: 1200px) {
-    .view-claim-request-data-container {
+    .view-add-request-data-container {
         width: 95vw;
     }
 
-    .claim-controls {
+    .add-controls {
         width: 120px;
         height: 50px;
+    }
+
+    .register-restaurant-image {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .register-restaurant-image {
+        width: 100%;
+    }
+}
+
+/* Important: Prevent pdf printing */
+@media print {
+    .add-document-container {
+      display: none;
     }
 }
