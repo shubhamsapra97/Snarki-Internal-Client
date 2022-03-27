@@ -50,7 +50,7 @@ const AddRequests = () => {
                             </tbody>
                         </table>
                     </div>
-                    : <div className="no-add-requests">"No Claim Requests!!"</div>
+                    : <div className="no-add-requests">"No Registration Requests!!"</div>
             }
         </div>
     );

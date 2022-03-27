@@ -61,4 +61,4 @@ const PdfViewer = ({url}) => {
   );
 }
 
-export default PdfViewer;
+export default React.memo(PdfViewer);

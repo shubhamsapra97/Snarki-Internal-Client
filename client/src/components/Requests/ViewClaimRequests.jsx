@@ -36,7 +36,7 @@ const ViewClaimRequest = () => {
             reason: ''
         },
         validate,
-        onSubmit: () => {},
+        onSubmit: () => {return null},
     });
 
     const fetchRequestDataFn = async () => {

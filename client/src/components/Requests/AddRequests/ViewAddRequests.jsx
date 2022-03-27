@@ -104,10 +104,10 @@ const ViewAddRequest = () => {
                 }
             });
 
-            if (data.registerRequestUpdate.code !== 200) {
-                setErrorMessage(data.registerRequestUpdate.message);
+            if (data.addRequestUpdate.code !== 200) {
+                setErrorMessage(data.addRequestUpdate.message);
             } else {
-                navigate("/");
+                navigate("/dashboard/requests/add");
             }
         }
 
